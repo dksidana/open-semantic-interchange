@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Semantic Interchange (OSI) - The Universal Standard for Data</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111827; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4B5563; 
+        }
+        
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #60A5FA, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Code Block Glow */
+        .code-glow {
+            box-shadow: 0 0 40px -10px rgba(96, 165, 250, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 antialiased selection:bg-blue-500 selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-gray-950/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fa-solid fa-layer-group text-white text-sm"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight">Open Semantic Interchange</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#code" class="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Specification</a>
+                        <a href="#partners" class="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Partners</a>
+                        <a href="https://github.com/dbt-labs/metricflow" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all shadow-lg shadow-blue-900/50 flex items-center gap-2">
+                            <i class="fa-brands fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden border-t border-gray-800 bg-gray-900" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#code" class="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">Specification</a>
+                <a href="#partners" class="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">Partners</a>
+                <a href="https://github.com/dbt-labs/metricflow" class="text-blue-400 hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">GitHub Repo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 lg:pt-48 lg:pb-32 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute top-0 left-1/2 w-full -translate-x-1/2 h-full z-0 pointer-events-none">
+            <div class="absolute top-20 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+            <!-- Grid Pattern -->
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-20"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/30 border border-blue-800 text-blue-300 text-xs font-semibold uppercase tracking-wide mb-6">
+                <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                Now Open Source
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8">
+                The Universal Standard for <br/>
+                <span class="text-gradient">Semantic Data</span>
+            </h1>
+            
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400 leading-relaxed">
+                Define your business metrics once. Use them everywhere. <br class="hidden md:block">
+                The Open Semantic Interchange (OSI) allows AI agents, BI tools, and data platforms to speak the same language.
+            </p>
+            
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://github.com/dbt-labs/metricflow" target="_blank" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition-all shadow-lg shadow-blue-600/20">
+                    <i class="fa-brands fa-github mr-2"></i> View Specification
+                </a>
+                <a href="#about" class="inline-flex items-center justify-center px-8 py-3 border border-gray-700 text-base font-medium rounded-lg text-gray-300 bg-gray-900 hover:bg-gray-800 md:py-4 md:text-lg md:px-10 transition-all">
+                    Learn More
+                </a>
+            </div>
+
+            <!-- Stats/Trust -->
+            <div class="mt-16 pt-8 border-t border-gray-800/50 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-70">
+                <div>
+                    <div class="text-3xl font-bold text-white">100%</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider mt-1">Vendor Neutral</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-white">YAML</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider mt-1">Configuration</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-white">Apache 2.0</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider mt-1">Open Source</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-white">AI Ready</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider mt-1">Semantic Context</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Section -->
+    <section id="code" class="py-20 bg-gray-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                
+                <!-- Content -->
+                <div class="mb-12 lg:mb-0">
+                    <h2 class="text-3xl font-bold text-white sm:text-4xl mb-6">
+                        Write Once, <span class="text-blue-400">Query Anywhere</span>.
+                    </h2>
+                    <p class="text-lg text-gray-400 mb-8">
+                        Stop redefining "Revenue" in every dashboard. OSI uses a declarative YAML standard (MetricFlow) to define metrics, dimensions, and joins.
+                    </p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-blue-900/50 flex items-center justify-center border border-blue-800 mt-1">
+                                <i class="fa-solid fa-check text-blue-400 text-xs"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-white">Consistent Definitions</h3>
+                                <p class="text-gray-500">Ensure Marketing, Finance, and Sales see the same numbers.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-blue-900/50 flex items-center justify-center border border-blue-800 mt-1">
+                                <i class="fa-solid fa-check text-blue-400 text-xs"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-white">AI Context</h3>
+                                <p class="text-gray-500">Give LLMs the semantic context they need to answer questions accurately.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-blue-900/50 flex items-center justify-center border border-blue-800 mt-1">
+                                <i class="fa-solid fa-check text-blue-400 text-xs"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-white">No Lock-In</h3>
+                                <p class="text-gray-500">Move your business logic between platforms freely.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Interactive Code Block -->
+                <div class="relative code-glow rounded-xl bg-gray-950 border border-gray-800 overflow-hidden">
+                    <div class="flex items-center justify-between px-4 py-2 bg-gray-900 border-b border-gray-800">
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="ml-2 text-xs text-gray-500 font-mono">revenue_model.yaml</span>
+                        </div>
+                        <button onclick="copyCode()" class="text-gray-500 hover:text-white transition-colors">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                    <div class="p-6 overflow-x-auto">
+                        <pre class="font-mono text-sm leading-relaxed"><code class="language-yaml" id="codeSnippet"><span class="text-purple-400">semantic_model:</span>
+  <span class="text-blue-400">name:</span> <span class="text-green-400">orders</span>
+  <span class="text-blue-400">description:</span> <span class="text-gray-400">Core order data from the ERP system</span>
+  <span class="text-blue-400">model:</span> <span class="text-green-400">raw_orders</span>
+  
+  <span class="text-purple-400">entities:</span>
+    - <span class="text-blue-400">name:</span> <span class="text-green-400">order_id</span>
+      <span class="text-blue-400">type:</span> <span class="text-green-400">primary</span>
+    - <span class="text-blue-400">name:</span> <span class="text-green-400">customer_id</span>
+      <span class="text-blue-400">type:</span> <span class="text-green-400">foreign</span>
+
+  <span class="text-purple-400">measures:</span>
+    - <span class="text-blue-400">name:</span> <span class="text-green-400">order_total</span>
+      <span class="text-blue-400">expr:</span> <span class="text-green-400">amount_usd</span>
+      <span class="text-blue-400">agg:</span> <span class="text-green-400">sum</span>
+
+  <span class="text-purple-400">dimensions:</span>
+    - <span class="text-blue-400">name:</span> <span class="text-green-400">order_date</span>
+      <span class="text-blue-400">type:</span> <span class="text-green-400">time</span>
+      <span class="text-blue-400">type_params:</span>
+        <span class="text-blue-400">time_granularity:</span> <span class="text-green-400">day</span></code></pre>
+                    </div>
+                    <!-- Notification -->
+                    <div id="copyNotification" class="absolute top-12 right-4 bg-green-600 text-white text-xs px-3 py-1 rounded opacity-0 transition-opacity">
+                        Copied!
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="py-20 bg-gray-950 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Supported By Industry Leaders</h2>
+            <p class="text-gray-400 mb-12 max-w-2xl mx-auto">
+                The Open Semantic Interchange is a coalition effort to unify the data stack.
+            </p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center opacity-80">
+                <!-- Partner Items (Text/Icon representations) -->
+                <div class="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-blue-500/50 transition-all group">
+                    <i class="fa-solid fa-snowflake text-2xl text-blue-400 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="font-bold text-gray-300">Snowflake</h3>
+                </div>
+                <div class="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-blue-500/50 transition-all group">
+                    <i class="fa-brands fa-salesforce text-2xl text-blue-400 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="font-bold text-gray-300">Salesforce</h3>
+                </div>
+                <div class="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-orange-500/50 transition-all group">
+                    <i class="fa-solid fa-fish text-2xl text-orange-400 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="font-bold text-gray-300">dbt Labs</h3>
+                </div>
+                <div class="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-blue-500/50 transition-all group">
+                    <i class="fa-solid fa-chart-line text-2xl text-white mb-2 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="font-bold text-gray-300">Tableau</h3>
+                </div>
+                <div class="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-gray-500/50 transition-all group">
+                    <i class="fa-solid fa-building-columns text-2xl text-white mb-2 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="font-bold text-gray-300">BlackRock</h3>
+                </div>
+                
+                <!-- Row 2 -->
+                <div class="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-blue-500/50 transition-all group">
+                    <span class="text-xl font-bold text-gray-300">Alation</span>
+                </div>
+                <div class="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-blue-500/50 transition-all group">
+                    <span class="text-xl font-bold text-gray-300">Atlan</span>
+                </div>
+                <div class="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-blue-500/50 transition-all group">
+                    <span class="text-xl font-bold text-gray-300">Sigma</span>
+                </div>
+                <div class="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-blue-500/50 transition-all group">
+                    <span class="text-xl font-bold text-gray-300">Omni</span>
+                </div>
+                <div class="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-blue-500/50 transition-all group">
+                    <span class="text-xl font-bold text-gray-300">RelationalAI</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Section -->
+    <section id="about" class="py-20 bg-gray-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white">The "Rosetta Stone" for Business Data</h2>
+                <p class="mt-4 text-gray-400">Eliminating the silos between AI, BI, and Data Engineering.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Card 1 -->
+                <div class="bg-gray-800/30 p-8 rounded-2xl border border-gray-700/50 hover:bg-gray-800/50 transition-all">
+                    <div class="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-robot text-blue-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">AI-Ready Semantics</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        LLMs struggle with raw database schemas. OSI provides the business context (metrics, definitions) that agents need to answer questions reliably.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-gray-800/30 p-8 rounded-2xl border border-gray-700/50 hover:bg-gray-800/50 transition-all">
+                    <div class="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-rotate text-purple-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Interoperability</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Stop rebuilding your semantic layer for every new tool. Define it once in OSI/MetricFlow and sync it to Tableau, PowerBI, and Snowflake.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-gray-800/30 p-8 rounded-2xl border border-gray-700/50 hover:bg-gray-800/50 transition-all">
+                    <div class="w-12 h-12 bg-green-900/50 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-lock-open text-green-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Vendor Neutral</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        An open standard governed by the community, not a single vendor. Your business logic belongs to you, not your BI tool.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-br from-blue-900 to-gray-900 relative">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-30"></div>
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Standardize Your Data?</h2>
+            <p class="text-xl text-blue-100 mb-10">
+                Join the coalition and start building your semantic layer with open standards today.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://github.com/dbt-labs/metricflow" target="_blank" class="bg-white text-blue-900 hover:bg-gray-100 px-8 py-3 rounded-lg font-bold transition-all flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-github"></i>
+                    Get the Code
+                </a>
+                <a href="https://www.snowflake.com/en/blog/open-semantic-interchange-ai-standard/" target="_blank" class="bg-blue-800 border border-blue-400/30 text-white hover:bg-blue-700 px-8 py-3 rounded-lg font-bold transition-all">
+                    Read the Announcement
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 border-t border-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 flex items-center">
+                <div class="w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded flex items-center justify-center mr-2">
+                    <i class="fa-solid fa-layer-group text-white text-[10px]"></i>
+                </div>
+                <span class="font-bold text-lg text-gray-300">OSI</span>
+            </div>
+            <div class="flex space-x-6 text-sm text-gray-500">
+                <a href="#" class="hover:text-white transition-colors">Documentation</a>
+                <a href="#" class="hover:text-white transition-colors">GitHub</a>
+                <a href="#" class="hover:text-white transition-colors">Privacy</a>
+            </div>
+            <div class="mt-4 md:mt-0 text-sm text-gray-600">
+                &copy; 2024 Open Semantic Interchange Coalition.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function copyCode() {
+            const codeText = `semantic_model:
+  name: orders
+  description: Core order data from the ERP system
+  model: raw_orders
+  
+  entities:
+    - name: order_id
+      type: primary
+    - name: customer_id
+      type: foreign
+
+  measures:
+    - name: order_total
+      expr: amount_usd
+      agg: sum
+
+  dimensions:
+    - name: order_date
+      type: time
+      type_params:
+        time_granularity: day`;
+            
+            // Create a temporary textarea to copy from
+            const textarea = document.createElement('textarea');
+            textarea.value = codeText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            // Show notification
+            const notif = document.getElementById('copyNotification');
+            notif.classList.remove('opacity-0');
+            setTimeout(() => {
+                notif.classList.add('opacity-0');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
